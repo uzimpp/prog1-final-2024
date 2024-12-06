@@ -1,156 +1,139 @@
 import turtle
+import time
 
-def init(my_turtle, color):
-    turtle.speed(0)
-    turtle.tracer(0)
-    turtle.hideturtle()
-    turtle.colormode(255)
-    
-    my_turtle.color(color)
-    my_turtle.penup()
-    my_turtle.setheading(0)
-    my_turtle.goto(0, 0)
-    my_turtle.pensize(10)
+class Segment:
+    def __init__(self, t, color, dt):
+        self.t = t
+        self.t.color(color)
+        self.t.penup()
+        self.t.setheading(0)
+        self.t.goto(0, 0)
+        self.t.pensize(10)
+        self.dt = dt
 
+    def draw(self, digit):
+        if digit == 0:
+            self.t.goto(-50, 100)
+            self.t.pendown()
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.penup()
 
-def draw(my_turtle, digit):
-    if digit == 0:
-        my_turtle.goto(-50, 100)
-        my_turtle.pendown()
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.penup()
+        if digit == 1:
+            self.t.goto(50, 100)
+            self.t.pendown()
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.penup()
 
-    if digit == 1:
-        my_turtle.goto(50, 100)
-        my_turtle.pendown()
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.penup()
+        if digit == 2:
+            self.t.goto(-50, 100)
+            self.t.pendown()
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.forward(100)
+            self.t.penup()
 
-    if digit == 2:
-        my_turtle.goto(-50, 100)
-        my_turtle.pendown()
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.forward(100)
-        my_turtle.penup()
+        if digit == 3:
+            self.t.goto(-50, 100)
+            self.t.pendown()
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.forward(-100)
+            self.t.left(90)
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.left(90)
+            self.t.penup()
 
-    if digit == 3:
-        my_turtle.goto(-50, 100)
-        my_turtle.pendown()
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.forward(-100)
-        my_turtle.left(90)
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.left(90)
-        my_turtle.penup()
+        if digit == 4:
+            self.t.goto(-50, 100)
+            self.t.pendown()
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.forward(100)
+            self.t.forward(-100)
+            self.t.forward(-100)
+            self.t.right(90)
+            self.t.penup()
 
-    if digit == 4:
-        my_turtle.goto(-50, 100)
-        my_turtle.pendown()
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.forward(100)
-        my_turtle.forward(-100)
-        my_turtle.forward(-100)
-        my_turtle.right(90)
-        my_turtle.penup()
+        if digit == 5:
+            self.t.goto(-50, 100)
+            self.t.pendown()
+            self.t.forward(100)
+            self.t.forward(-100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.left(90)
+            self.t.penup()
 
-    if digit == 5:
-        my_turtle.goto(-50, 100)
-        my_turtle.pendown()
-        my_turtle.forward(100)
-        my_turtle.forward(-100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.left(90)
-        my_turtle.penup()
+        if digit == 6:
+            self.draw(5)
+            self.t.goto(-50, 0)
+            self.t.pendown()
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.penup()
+        
+        if digit == 7:
+            self.t.goto(-50, 100)
+            self.t.pendown()
+            self.t.forward(100)
+            self.t.forward(-100)
+            self.draw(1)
 
-    if digit == 6:
-        draw(my_turtle, 5)
-        my_turtle.goto(-50, 0)
-        my_turtle.pendown()
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.penup()
-    
-    if digit == 7:
-        my_turtle.goto(-50, 100)
-        my_turtle.pendown()
-        my_turtle.forward(100)
-        my_turtle.forward(-100)
-        draw(my_turtle, 1)
+        if digit == 8:
+            self.draw(0)
+            self.t.goto(-50, 0)
+            self.t.pendown()
+            self.t.forward(100)
+            self.t.penup()
 
-    if digit == 8:
-        draw(my_turtle, 0)
-        my_turtle.goto(-50, 0)
-        my_turtle.pendown()
-        my_turtle.forward(100)
-        my_turtle.penup()
+        if digit == 9:
+            self.draw(5)
+            self.t.goto(50, 100)
+            self.t.pendown()
+            self.t.right(90)
+            self.t.forward(100)
+            self.t.left(90)
+            self.t.penup()
 
-    if digit == 9:
-        draw(my_turtle, 5)
-        my_turtle.goto(50, 100)
-        my_turtle.pendown()
-        my_turtle.right(90)
-        my_turtle.forward(100)
-        my_turtle.left(90)
-        my_turtle.penup()
+    def clear(self):
+        self.t.clear()
 
-def clear(my_turtle):
-    my_turtle.clear()
-
-def my_delay(dt):
-    import time
-    start =  time.time()
-    while time.time() - start < dt:
-        pass
-
-Tom = turtle.Turtle()
-tom_color = (255, 0, 0)
-init(Tom, tom_color)
-delay_in_seconds = 0.2
-while True:
-    for i in range(0, 10):
-        clear(Tom)
-        draw(Tom, i)
-        my_delay(delay_in_seconds)
-        turtle.update()
-
-turtle.done()
-
+    def my_delay(self):
+        start =  time.time()
+        while time.time() - start < self.dt:
+            pass
