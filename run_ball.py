@@ -65,10 +65,10 @@ class BouncingSimulator:
 
     def __redraw(self, j):
         turtle.clear()
-        self.segment.clear()
         self.__draw_border()
         for i in range(len(self.ball_list)):
             self.ball_list[i].draw()
+        self.segment.clear()
         self.segment.draw(j)
         turtle.update()
         heapq.heappush(self.pq, my_event.Event(self.t + 1.0/self.HZ, None, None, None))
@@ -90,7 +90,7 @@ class BouncingSimulator:
 
             ball_a = e.a
             ball_b = e.b
-            segment = e.segment
+            # segment = e.segment
 
             # update positions, and then simulation clock
             for i in range(len(self.ball_list)):
@@ -111,9 +111,7 @@ class BouncingSimulator:
 
             self.__predict(ball_a)
             self.__predict(ball_b)
-            # regularly update the prediction for the paddle as its position may always be changing due to keyboard events
 
-        # hold the window; close it by clicking the window close 'x' mark
         turtle.done()
 
 num_balls = int(input("Number of balls to simulate: "))
